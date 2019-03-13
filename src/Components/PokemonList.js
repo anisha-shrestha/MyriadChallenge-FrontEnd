@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./materialize.css";
+import { Container, Row, Col } from "reactstrap";
 //fdsf
 export default class PokemonList extends React.Component {
   state = {
@@ -18,23 +19,27 @@ export default class PokemonList extends React.Component {
 
   render() {
     return (
-      <div id="tableview">
-        <table width="1024px">
+      <div   >
+
           {this.state.pokemons.map(pokemon => (
-            <tr>
-              <div className="col s2 m4">
-                <div className="card">
-                  <span className="card-title">{pokemon.name}</span>
-                  <div className="card-image">
-                    <img src={pokemon.image} />
+              <div  className="cards" >
+
+                  <div className= "title">{pokemon.name}
                   </div>
-                  <a className="btn disabled">{pokemon.types[1]}</a>
-                  <a className="btn disabled">{pokemon.types[0]}</a>
-                </div>
+                  <div className= "image">
+                      <img src={pokemon.image}  /></div>
+
+                      <button className="btn1">{pokemon.types[1]}</button>
+                      <button className="btn2" >{pokemon.types[0]}</button>
+
+
               </div>
-            </tr>
+
+
+
+
           ))}
-        </table>
+
       </div>
     );
   }

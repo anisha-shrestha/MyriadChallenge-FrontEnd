@@ -7,8 +7,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+          <div className="icon1">
+              <div className="arrow"></div>
+          </div>
+          <div className="icon2">
+              <div className="arrow"></div>
+          </div>
         <h1>Pokédex </h1>
+
         <PokemonList />
+
       </div>
     );
   }

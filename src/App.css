@@ -21,3 +21,46 @@
     transform: rotate(360deg);
   }
 }
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 80px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  top: 25px;
+  width: 90%;
+  height: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+  animation: arrow 700ms linear infinite;
+}
+
+.arrow::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 10px;
+  top: -12px;
+  right: -8px;
+  background-color: #fff;
+  transform: rotate(45deg);
+}
+
+.arrow::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 10px;
+  top: 12px;
+  right: -8px;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+  transform: rotate(-45deg);
+}
