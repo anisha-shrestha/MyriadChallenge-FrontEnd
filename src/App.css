@@ -1,15 +1,5 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: rgba(85, 166, 156, 1);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
