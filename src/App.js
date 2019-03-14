@@ -1,23 +1,27 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+
 import "./App.css";
 import PokemonList from "./Components/PokemonList";
-
 class App extends Component {
+constructor(props){
+  super(props);
+}
+
   render() {
+
     return (
       <div className="App">
-          <div className="icon1">
-              <div className="arrow"></div>
-          </div>
-          <div className="icon2">
-              <div className="arrow"></div>
-          </div>
+
         <h1>Pokédex </h1>
 
-        <PokemonList />
 
-      </div>
+
+
+        <PokemonList/>
+
+
+
+</div>
     );
   }
 }
