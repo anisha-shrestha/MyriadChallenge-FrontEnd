@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./materialize.css";
-import Filter from "./filter";
+
+import { Link } from "react-router-dom";
 import "../App.js";
 
 const url = "https://intern-pokedex.myriadapps.com/api/v1/pokemon?page=";
@@ -85,28 +85,46 @@ export default class PokemonList extends Component {
     return (
       <div>
         <p>
-          <button onClick={() => this.decrease()}> Previous</button>
-          <button onClick={() => this.increase()}> Next</button>
+          <button
+            class=" btn-circle btn-warning btn-lg"
+            onClick={() => this.decrease()}
+          >
+            <i className="glyphicon glyphicon-arrow-left" />
+          </button>
+          <button
+            class=" btn-circle btn-warning btn-lg"
+            onClick={() => this.increase()}
+          >
+            <i className="glyphicon glyphicon-arrow-right" />
+          </button>
           <br />
           <form onSubmit={this.handleSubmit}>
             <input
+              className="form-control"
               type="text"
               value={this.state.value}
               onChange={this.handleChange}
+              placeholder="Pokédex"
             />
           </form>
         </p>
+        <div className="card-group">
+          {this.state.pokemons.map(pokemon => (
+            <div key={pokemon.id} className="col-md-3 col-sm-6 mb-5">
+              <div className="card">
+                <div className="card-header text-dark">{pokemon.name}</div>
+                <div className="card-img-top text-center ">
+                  <img src={pokemon.image} />
+                </div>
+                <footer className="card-text text-dark text-right">
+                  {pokemon.types[1]}
 
-        {this.state.pokemons.map(pokemon => (
-          <div key={pokemon.id} className="cards">
-            <div className="title">{pokemon.name}</div>
-            <div className="image">
-              <img src={pokemon.image} />
+                  {pokemon.types[0]}
+                </footer>
+              </div>
             </div>
-            <button className="btn1">{pokemon.types[1]}</button>
-            <button className="btn2">{pokemon.types[0]}</button>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     );
   }
