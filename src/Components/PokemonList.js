@@ -3,6 +3,7 @@ import axios from "axios";
 import "./materialize.css";
 import Filter from "./filter";
 import "../App.js";
+
 const url = "https://intern-pokedex.myriadapps.com/api/v1/pokemon?page=";
 
 export default class PokemonList extends Component {
@@ -11,8 +12,10 @@ export default class PokemonList extends Component {
     this.state = {
       pokemons: [],
       clicks: 2,
-      showComponent: false
+      value: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   decrease = () => {
@@ -44,12 +47,25 @@ export default class PokemonList extends Component {
       });
     console.log(this.state.clicks);
   };
-  search = event => {
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+  handleSubmit(event) {
     event.preventDefault();
-    this.setState({
-      showComponent: true
-    });
-  };
+    //alert("hi");
+    //this.setState({ value: this.state.value });
+    axios
+      .get(
+        " https://intern-pokedex.myriadapps.com/api/v1/pokemon?name=" +
+          this.state.value
+        //this.state.value
+      )
+      .then(res => {
+        console.log(res);
+        this.setState({ pokemons: res.data.data });
+      });
+  }
 
   componentDidMount() {
     axios
@@ -60,6 +76,10 @@ export default class PokemonList extends Component {
       });
     console.log(this.state.clicks);
   }
+  /*<form>
+            <input type="text" placeholder="Pokedex" value={this.state.value} />
+            <button onClick={this.onSubmit}>Submit</button>
+          </form> */
 
   render() {
     return (
@@ -67,11 +87,14 @@ export default class PokemonList extends Component {
         <p>
           <button onClick={() => this.decrease()}> Previous</button>
           <button onClick={() => this.increase()}> Next</button>
-          <form onSubmit={this.search}>
-            <input type="text" placeholder="Pokedex" />
-            <button>Submit</button>
+          <br />
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
           </form>
-          {this.state.showComponent ? <Filter /> : null}
         </p>
 
         {this.state.pokemons.map(pokemon => (
