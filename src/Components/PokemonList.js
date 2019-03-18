@@ -91,37 +91,35 @@ export default class PokemonList extends Component {
     return (
       <div>
         <p>
-          <table cellPadding={150}>
-            <tr>
-              <th>
-                <button className="btn-success" onClick={() => this.decrease()}>
-                  Previous
-                  <i className="glyphicon glyphicon-arrow-left" />
-                </button>
-              </th>
-              <th>
-                <form onSubmit={this.handleSubmit}>
-                  <input
-                    className="form-control"
-                    type="text"
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    placeholder="Pokédex"
-                    size="40"
-                  />
-                </form>
-              </th>
-              <th>
-                <button
-                  className=" btn-circle btn-warning btn-lg"
-                  onClick={() => this.increase()}
-                >
-                  Next
-                  <i className="glyphicon glyphicon-arrow-right" />
-                </button>
-              </th>
-            </tr>
-          </table>
+          <tr>
+            <th>
+              <button className="btn-success" onClick={() => this.decrease()}>
+                Previous
+                <i className="glyphicon glyphicon-arrow-left" />
+              </button>
+            </th>
+            <th>
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  className="form-control page-header text-center"
+                  type="text"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  placeholder="Pokédex"
+                  size="40"
+                />
+              </form>
+            </th>
+            <th>
+              <button
+                className=" btn-circle btn-warning btn-lg"
+                onClick={() => this.increase()}
+              >
+                Next
+                <i className="glyphicon glyphicon-arrow-right" />
+              </button>
+            </th>
+          </tr>
         </p>
 
         <div className="card-deck">
