@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import PokemonList from "./Components/PokemonList";
+import PokemonDetail from "./Components/PokemonDetail";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="row ">
-          <div className="col">
-            <div className="container">
-              <PokemonList />
-            </div>
-          </div>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={PokemonList} />
+            <Route exact path="/:PokemonId" component={PokemonDetail} />
+          </Switch>
         </div>
-      </div>
+      </Router>
     );
   }
 }
