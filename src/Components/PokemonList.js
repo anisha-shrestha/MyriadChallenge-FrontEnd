@@ -101,7 +101,7 @@ export default class PokemonList extends Component {
             <th>
               <form onSubmit={this.handleSubmit}>
                 <input
-                  className="form-control page-header text-center"
+                  className="page-header text-center"
                   type="text"
                   value={this.state.value}
                   onChange={this.handleChange}
@@ -125,11 +125,15 @@ export default class PokemonList extends Component {
         <div className="card-deck">
           {this.state.pokemons.map(pokemon => (
             <div className="col-md-3 col-sm-6 mb-5">
-              <StyleLink
-                to={
-                  " https://intern-pokedex.myriadapps.com/api/v1/pokemon/" +
-                  pokemon.id
-                }
+              <Link
+                to={{
+                  pathname: "/detail",
+                  state: {
+                    url:
+                      "https://intern-pokedex.myriadapps.com/api/v1/pokemon/" +
+                      pokemon.id
+                  }
+                }}
               >
                 <div>
                   <div
@@ -148,7 +152,7 @@ export default class PokemonList extends Component {
                     </footer>
                   </div>
                 </div>
-              </StyleLink>
+              </Link>
             </div>
           ))}
         </div>
