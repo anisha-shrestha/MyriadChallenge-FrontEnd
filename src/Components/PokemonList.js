@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../App.js";
 
 const url = "https://intern-pokedex.myriadapps.com/api/v1/pokemon?page=";
-const StyleLink = styled(Link)`
+const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
   &:focus,
@@ -90,71 +90,77 @@ export default class PokemonList extends Component {
   render() {
     return (
       <div>
-        <p>
-          <tr>
-            <th>
-              <button className="btn-success" onClick={() => this.decrease()}>
-                Previous
-                <i className="glyphicon glyphicon-arrow-left" />
-              </button>
-            </th>
-            <th>
-              <form onSubmit={this.handleSubmit}>
-                <input
-                  className="page-header text-center"
-                  type="text"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  placeholder="Pokédex"
-                  size="40"
-                />
-              </form>
-            </th>
-            <th>
-              <button
-                className=" btn-circle btn-warning btn-lg"
-                onClick={() => this.increase()}
-              >
-                Next
-                <i className="glyphicon glyphicon-arrow-right" />
-              </button>
-            </th>
-          </tr>
-        </p>
+        <div className="row ">
+          <div className="col-sm-3  text-left">
+            <button
+              className="side btn-success"
+              onClick={() => this.decrease()}
+            >
+              Previous
+              <i className="glyphicon glyphicon-arrow-left" />
+            </button>
+          </div>
+          <div className=" side text-center">
+            <form onSubmit={this.handleSubmit}>
+              <input
+                className="page-header text-center"
+                type="text"
+                value={this.state.value}
+                onChange={this.handleChange}
+                placeholder="Pokédex"
+                size="40"
+              />
+            </form>
+          </div>
+          <div className=" side text-right">
+            <button
+              className=" btn-circle btn-warning btn-lg"
+              onClick={() => this.increase()}
+            >
+              Next
+              <i className="glyphicon glyphicon-arrow-right" />
+            </button>
+          </div>
+        </div>
+        <div className="topBuffer ">
+          <div className="card-deck">
+            {this.state.pokemons.map(pokemon => (
+              <div className="col-md-3 col-sm-6 mb-5">
+                <StyledLink
+                  to={{
+                    pathname: "/detail",
+                    state: {
+                      url:
+                        "https://intern-pokedex.myriadapps.com/api/v1/pokemon/" +
+                        pokemon.id
+                    }
+                  }}
+                >
+                  <div>
+                    <div
+                      key={pokemon.id}
+                      className="card "
+                      style={{ maxWidth: "1024px" }}
+                    >
+                      <div className="card-header text-dark">
+                        {pokemon.name}
+                      </div>
+                      <div className="card-img-top text-center ">
+                        <img src={pokemon.image} />
+                      </div>
+                      <footer className="card-text text-dark text-right">
+                        <span className="badge badge-primary mt-2">
+                          {pokemon.types[1]}
 
-        <div className="card-deck">
-          {this.state.pokemons.map(pokemon => (
-            <div className="col-md-3 col-sm-6 mb-5">
-              <Link
-                to={{
-                  pathname: "/detail",
-                  state: {
-                    url:
-                      "https://intern-pokedex.myriadapps.com/api/v1/pokemon/" +
-                      pokemon.id
-                  }
-                }}
-              >
-                <div>
-                  <div
-                    key={pokemon.id}
-                    className="card "
-                    style={{ maxWidth: "1024px" }}
-                  >
-                    <div className="card-header text-dark">{pokemon.name}</div>
-                    <div className="card-img-top text-center ">
-                      <img src={pokemon.image} />
+                          {pokemon.types[0]}
+                        </span>
+                      </footer>
                     </div>
-                    <footer className="card-text text-dark text-right">
-                      {pokemon.types[1]}
-
-                      {pokemon.types[0]}
-                    </footer>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+                </StyledLink>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );

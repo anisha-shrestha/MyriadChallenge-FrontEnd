@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import "./pokeDetail.css";
 export default class PokemonDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = { bar: 3, title: 2 };
+    this.state = { bar: 10, title: 2 };
   }
 
   async componentDidMount() {
@@ -43,11 +43,11 @@ export default class PokemonDetail extends Component {
   render() {
     return (
       <div>
-        <h1 className=" fixed-top text-center display-1 font-weight-bold">
+        <h1 className=" position-relative fixed-top text-center display-1 font-weight-bold">
           {this.state.name}
         </h1>
-        <div className="">
-          <div className="card">
+        <div className="topBuffer">
+          <div className="card position-relative">
             <div className="card-header text-dark">
               <div className="row">
                 <div className=" col-5 ">
@@ -61,7 +61,7 @@ export default class PokemonDetail extends Component {
             <div className="card-body text-dark ">
               <div className="col">
                 <div className="row ">
-                  <div className=" float-left ">
+                  <div className=" side float-left ">
                     <img
                       src={this.state.image}
                       className=" card-img img-fluid "
@@ -193,7 +193,7 @@ export default class PokemonDetail extends Component {
                   <p> {this.state.description}</p>
                   <h2>Profile</h2>
 
-                  <div className="col ">
+                  <div className="col side ">
                     <div className="row">
                       <p className="float-left">
                         Height: {this.state.height} m
@@ -205,9 +205,9 @@ export default class PokemonDetail extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="col ">
+                  <div className="col side">
                     <div className="row">
-                      <p className="float-left">
+                      <p className=" float-left">
                         Egg Groups: {this.state.eggGroup}
                       </p>
                       <div className="col-4 float-right">
