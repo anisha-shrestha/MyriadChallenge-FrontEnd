@@ -10,7 +10,6 @@ export default class PokemonDetail extends Component {
   async componentDidMount() {
     //debugger;
     let url = this.props.location.state.url;
-
     const pokemon = await axios.get(url);
     const name = pokemon.data.data.name;
     const image = pokemon.data.data.image;
@@ -47,16 +46,20 @@ export default class PokemonDetail extends Component {
   render() {
     return (
       <div>
+        {/* Pokemon name header */}
         <h1 className=" position-relative fixed-top text-center display-1 font-weight-bold">
           {this.state.name}
         </h1>
+        {/* Card */}
         <div className="topBuffer">
           <div className="card position-relative">
             <div className="card-header text-dark">
               <div className="row">
                 <div className=" col-5 ">
+                  {/* Pokemon Name */}
                   <h2 className="float-left">{this.state.name}</h2>
                 </div>
+                {/* Pokemon Type */}
                 <div className="col-7">
                   <div className="badge badge-primary mt-2 float-right">
                     {this.state.types}
@@ -67,15 +70,19 @@ export default class PokemonDetail extends Component {
             <div className="card-body text-dark ">
               <div className="col">
                 <div className="row ">
+                  {/* Image */}
                   <div className=" side float-left ">
-                    <img alt={"pokemon"}
+                    <img
+                      alt={"pokemon"}
                       src={this.state.image}
                       className=" card-img img-fluid "
                     />
                   </div>
                   <div className="row">
+                    {/* Progress Bar*/}
                     <div className={`col-9 col-${this.state.bar}`}>
                       <div className="align-items-center">
+                        {/* Health */}
                         <div className=" float-right">HP</div>
                         <div>
                           <div className="progress">
@@ -96,6 +103,7 @@ export default class PokemonDetail extends Component {
                     </div>
                     <div className={`col-9 col-${this.state.bar}`}>
                       <div className="align-items-center">
+                        {/* Attack */}
                         <div className=" float-right">Attack</div>
                         <div>
                           <div className="progress">
@@ -114,6 +122,7 @@ export default class PokemonDetail extends Component {
                         </div>
                       </div>
                     </div>
+                    {/* Defense*/}
                     <div className={`col-9 col-${this.state.bar}`}>
                       <div className="align-items-center">
                         <div className=" float-right">Defense</div>
@@ -134,6 +143,7 @@ export default class PokemonDetail extends Component {
                         </div>
                       </div>
                     </div>
+                    {/* Speed*/}
                     <div className={`col-9 col-${this.state.bar}`}>
                       <div className="align-items-center">
                         <div className=" float-right">Speed</div>
@@ -154,6 +164,7 @@ export default class PokemonDetail extends Component {
                         </div>
                       </div>
                     </div>
+                    {/* Special attack*/}
                     <div className={`col-9 col-${this.state.bar}`}>
                       <div className="align-items-center">
                         <div className=" float-right">Sp Atk</div>
@@ -174,6 +185,7 @@ export default class PokemonDetail extends Component {
                         </div>
                       </div>
                     </div>
+                    {/* Special Defense*/}
                     <div className={`col-9 col-${this.state.bar}`}>
                       <div className="align-items-center">
                         <div className=" float-right">Sp Defense</div>
@@ -197,6 +209,7 @@ export default class PokemonDetail extends Component {
                   </div>
                 </div>
                 <div>
+                  {/* Description*/}
                   <h1 className="text-dark">{this.state.genus}</h1>
                   <p> {this.state.description}</p>
                   <h2>Profile</h2>
