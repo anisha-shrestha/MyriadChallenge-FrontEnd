@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "../App.js";
 
-const url = "https://intern-pokedex.myriadapps.com/api/v1/pokemon?page=";
 const StyleLink = styled(Link)`
   text-decoration: none;
   color: black;
@@ -143,7 +142,7 @@ export default class PokemonList extends Component {
                         {pokemon.name}
                       </div>
                       <div className="card-img-top text-center ">
-                        <img src={pokemon.image} />
+                        <img alt="pokemon"src={pokemon.image} />
                       </div>
                       <footer className="card-text text-dark text-right">
                         <span className="badge badge-primary mt-2">

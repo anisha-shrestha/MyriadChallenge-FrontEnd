@@ -68,7 +68,7 @@ export default class PokemonDetail extends Component {
               <div className="col">
                 <div className="row ">
                   <div className=" side float-left ">
-                    <img
+                    <img alt={"pokemon"}
                       src={this.state.image}
                       className=" card-img img-fluid "
                     />
