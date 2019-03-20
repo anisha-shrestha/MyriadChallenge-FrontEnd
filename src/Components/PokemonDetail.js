@@ -22,8 +22,8 @@ export default class PokemonDetail extends Component {
     const speed = pokemon.data.data.stats.speed;
     const attack = pokemon.data.data.stats.attack;
     const defense = pokemon.data.data.stats.defense;
-    const specialAttack = pokemon.data.data.stats.special - attack;
-    const specialDefense = pokemon.data.data.stats.special - defense;
+    const specialAttack = pokemon.data.data.stats["special-attack"];
+    const specialDefense = pokemon.data.data.stats["special-defense"];
     const genus = pokemon.data.data.genus;
     const description = pokemon.data.data.description;
     const eggGroup = pokemon.data.data.egg_groups;
@@ -38,6 +38,10 @@ export default class PokemonDetail extends Component {
     this.setState({ genus });
     this.setState({ description });
     this.setState({ eggGroup });
+    this.setState({ specialAttack });
+    this.setState({ specialDefense });
+    this.setState({ attack });
+    this.setState({ defense });
   }
 
   render() {
@@ -54,7 +58,9 @@ export default class PokemonDetail extends Component {
                   <h2 className="float-left">{this.state.name}</h2>
                 </div>
                 <div className="col-7">
-                  <div className="float-right">{this.state.types}</div>
+                  <div className="badge badge-primary mt-2 float-right">
+                    {this.state.types}
+                  </div>
                 </div>
               </div>
             </div>
@@ -157,31 +163,33 @@ export default class PokemonDetail extends Component {
                               className="progress-bar"
                               role="progressbar"
                               style={{
-                                width: `${this.state.hp}%`
+                                width: `${this.state.specialAttack}%`
                               }}
                               aria-valuenow="25"
                               aria-valuemin="0"
                               aria-valuemax="100"
                             />
+                            {this.state.specialAttack}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className={`col-9 col-${this.state.bar}`}>
                       <div className="align-items-center">
-                        <div className=" float-right">Sp</div>
+                        <div className=" float-right">Sp Defense</div>
                         <div>
                           <div className="progress">
                             <div
                               className="progress-bar"
                               role="progressbar"
                               style={{
-                                width: `${this.state.hp}%`
+                                width: `${this.state.specialDefense}%`
                               }}
                               aria-valuenow="25"
                               aria-valuemin="0"
                               aria-valuemax="100"
                             />
+                            {this.state.specialDefense}
                           </div>
                         </div>
                       </div>

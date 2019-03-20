@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../App.js";
 
 const url = "https://intern-pokedex.myriadapps.com/api/v1/pokemon?page=";
-const StyledLink = styled(Link)`
+const StyleLink = styled(Link)`
   text-decoration: none;
   color: black;
   &:focus,
@@ -24,7 +24,8 @@ export default class PokemonList extends Component {
       clicks: 2,
       value: "",
       PokemonId: "",
-      url: " https://intern-pokedex.myriadapps.com/api/v1/pokemon/"
+      url: " https://intern-pokedex.myriadapps.com/api/v1/pokemon/",
+      types: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -103,12 +104,12 @@ export default class PokemonList extends Component {
           <div className=" side text-center">
             <form onSubmit={this.handleSubmit}>
               <input
-                className="page-header text-center"
+                className="form-control-lg color page-header text-center font-weight-bold text-white"
                 type="text"
                 value={this.state.value}
                 onChange={this.handleChange}
                 placeholder="Pokédex"
-                size="40"
+                style={{ width: "500px" }}
               />
             </form>
           </div>
@@ -125,8 +126,8 @@ export default class PokemonList extends Component {
         <div className="topBuffer ">
           <div className="card-deck">
             {this.state.pokemons.map(pokemon => (
-              <div className="col-md-3 col-sm-6 mb-5">
-                <StyledLink
+              <div key={pokemon.id} className="col-md-3 col-sm-6 mb-5">
+                <StyleLink
                   to={{
                     pathname: "/detail",
                     state: {
@@ -137,11 +138,7 @@ export default class PokemonList extends Component {
                   }}
                 >
                   <div>
-                    <div
-                      key={pokemon.id}
-                      className="card "
-                      style={{ maxWidth: "1024px" }}
-                    >
+                    <div className="card " style={{ maxWidth: "1024px" }}>
                       <div className="card-header text-dark">
                         {pokemon.name}
                       </div>
@@ -150,14 +147,12 @@ export default class PokemonList extends Component {
                       </div>
                       <footer className="card-text text-dark text-right">
                         <span className="badge badge-primary mt-2">
-                          {pokemon.types[1]}
-
-                          {pokemon.types[0]}
+                          {pokemon.types[1]} {pokemon.types[0]}
                         </span>
                       </footer>
                     </div>
                   </div>
-                </StyledLink>
+                </StyleLink>
               </div>
             ))}
           </div>
