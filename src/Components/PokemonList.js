@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "../App.js";
 
+
+//PokemonList.js
 const StyleLink = styled(Link)`
   text-decoration: none;
   color: black;
