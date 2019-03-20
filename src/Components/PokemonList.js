@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "../App.js";
 
-
 //PokemonList.js
 const StyleLink = styled(Link)`
   text-decoration: none;
@@ -12,9 +11,9 @@ const StyleLink = styled(Link)`
   &:focus,
   &:hover,
   &:visited,
-  &:link,
   &:active {
     text-decoration: none;
+    font-size: 150%;
   }
 `;
 export default class PokemonList extends Component {
@@ -31,9 +30,8 @@ export default class PokemonList extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  decrease = () => {
-    console.log("decrease clicked");
+  //Previous Button
+  decreasePages = () => {
     this.setState({ clicks: this.state.clicks - 1 });
     axios
       .get(
@@ -46,9 +44,8 @@ export default class PokemonList extends Component {
       });
     console.log(this.state.clicks);
   };
-
-  increase = () => {
-    console.log("decrease clicked");
+  //Next Button
+  increasePages = () => {
     this.setState({ clicks: this.state.clicks + 1 });
     axios
       .get(
@@ -67,12 +64,10 @@ export default class PokemonList extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-
     axios
       .get(
         " https://intern-pokedex.myriadapps.com/api/v1/pokemon?name=" +
           this.state.value
-        //this.state.value
       )
       .then(res => {
         console.log(res);
@@ -92,16 +87,19 @@ export default class PokemonList extends Component {
   render() {
     return (
       <div>
+        {/* Header */}
         <div className="row ">
+          {/* previous */}
           <div className="col-sm-3  text-left">
             <button
               className="side btn-success"
-              onClick={() => this.decrease()}
+              onClick={() => this.decreasePages()}
             >
               Previous
               <i className="glyphicon glyphicon-arrow-left" />
             </button>
           </div>
+          {/* Search Box */}
           <div className=" side text-center">
             <form onSubmit={this.handleSubmit}>
               <input
@@ -113,17 +111,19 @@ export default class PokemonList extends Component {
                 style={{ width: "500px" }}
               />
             </form>
-          </div>
+          </div>{" "}
+          {/* Next Button */}
           <div className=" side text-right">
             <button
-              className=" btn-circle btn-warning btn-lg"
-              onClick={() => this.increase()}
+              className=" btn-circle btn-success "
+              onClick={() => this.increasePages()}
             >
               Next
               <i className="glyphicon glyphicon-arrow-right" />
             </button>
           </div>
         </div>
+        {/*Card*/}
         <div className="topBuffer ">
           <div className="card-deck">
             {this.state.pokemons.map(pokemon => (
@@ -140,12 +140,14 @@ export default class PokemonList extends Component {
                 >
                   <div>
                     <div className="card " style={{ maxWidth: "1024px" }}>
+                      {/* Pokemon Image */}
                       <div className="card-header text-dark">
                         {pokemon.name}
                       </div>
                       <div className="card-img-top text-center ">
-                        <img alt="pokemon"src={pokemon.image} />
+                        <img alt="pokemon" src={pokemon.image} />
                       </div>
+                      {/* Type */}
                       <footer className="card-text text-dark text-right">
                         <span className="badge badge-primary mt-2">
                           {pokemon.types[1]} {pokemon.types[0]}
